@@ -151,7 +151,7 @@ useEffect(() => {
 
     // Section parallax (works on both mobile and desktop)
     gsap.to(portfolioSectionRef.current, {
-      y: mobile ? -400 : -900,
+      y: mobile ? -900 : -900,
       scrollTrigger: {
         trigger: portfolioSectionRef.current,
         start: "top bottom",
