@@ -126,28 +126,15 @@ useEffect(() => {
     });
 
     // Create a timeline for desktop images with scroll animation
-    if (!mobile) {
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: portfolioSectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 2,
-          markers: false, // Set to true for debugging
-        }
-      }).to(desktopElements, { y: 200, ease: "power1.out" });
-    } else {
-      // Create a timeline for mobile images with scroll animation
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: portfolioSectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 2,
-          markers: false,
-        }
-      }).to(mobileElements, { y: 200, ease: "power1.out" });
-    }
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: portfolioSectionRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 2,
+        markers: false, // Set to true for debugging
+      }
+    }).to(desktopElements, { y: 200, ease: "power1.out" });
 
     // Section parallax (works on both mobile and desktop)
     gsap.to(portfolioSectionRef.current, {
