@@ -36,7 +36,7 @@ const mobileImages = [
   { src: '/mobile/mb3-4.png', delay: 1.9, isStatic: false, zIndex: 13 },
   { src: '/mobile/mb1-2.png', delay: 2.1, isStatic: false, zIndex: 12 },
   { src: '/mobile/mbme.png', delay: 2.2, isStatic: false, zIndex: 11 },
-  { src: '/mobile/mobile bg.png', isStatic: false, zIndex: 10 },
+  { src: '/mobile/mobile bg.png', isStatic: false, zIndex: 20 },
 ];
 
 const desktopImages = [ 
