@@ -98,14 +98,16 @@ useEffect(() => {
   gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.getAll().forEach(trigger => trigger.kill());
 
-  if (!isMobile() && portfolioSectionRef.current) {
-    // Use GSAP's class selector for desktop images
+  if (portfolioSectionRef.current) {
+    const mobile = isMobile();
+    // Use GSAP's class selector for desktop and mobile images
     const desktopElements = gsap.utils.toArray(".desktop-image");
-const mobileElements = gsap.utils.toArray(".mobile-image");
+    const mobileElements = gsap.utils.toArray(".mobile-image");
+
     // Hide desktop images when portfolio section covers the screen
     gsap.to(desktopElements, {
       opacity: 0,
-      scrollTrigger: { 
+      scrollTrigger: {
         trigger: portfolioSectionRef.current,
         start: "center top",
         end: "top top",
@@ -113,30 +115,43 @@ const mobileElements = gsap.utils.toArray(".mobile-image");
       }
     });
 
-gsap.to(mobileElements, {
+    gsap.to(mobileElements, {
       opacity: 0,
-      scrollTrigger: { 
+      scrollTrigger: {
         trigger: portfolioSectionRef.current,
         start: "top top",
-        end: "top center", 
+        end: "top center",
         scrub: 0,
       }
     });
-    
-    // Create a timeline for desktop images with scroll animation
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: portfolioSectionRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 2,
-        markers: false, // Set to true for debugging
-      }
-    }).to(desktopElements, { y: 200, ease: "power1.out" });
 
-    // Section parallax
+    // Create a timeline for desktop images with scroll animation
+    if (!mobile) {
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: portfolioSectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 2,
+          markers: false, // Set to true for debugging
+        }
+      }).to(desktopElements, { y: 200, ease: "power1.out" });
+    } else {
+      // Create a timeline for mobile images with scroll animation
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: portfolioSectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 2,
+          markers: false,
+        }
+      }).to(mobileElements, { y: 200, ease: "power1.out" });
+    }
+
+    // Section parallax (works on both mobile and desktop)
     gsap.to(portfolioSectionRef.current, {
-      y: -900,
+      y: mobile ? -400 : -900,
       scrollTrigger: {
         trigger: portfolioSectionRef.current,
         start: "top bottom",
