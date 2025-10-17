@@ -30,13 +30,13 @@ const getMobileVH = () => {
   return null;
 };
 const mobileImages = [
-  { src: '/mobile/mbname.png', delay: 2, isStatic: false },
-  { src: '/mobile/7.png', delay: 1.6, isStatic: false },
-  { src: '/mobile/mb5-6.png', delay: 1.8, isStatic: false },
-  { src: '/mobile/mb3-4.png', delay: 1.9, isStatic: false },
-  { src: '/mobile/mb1-2.png', delay: 2.1, isStatic: false },
-  { src: '/mobile/mbme.png', delay: 2.2, isStatic: false},
-  { src: '/mobile/mobile bg.png', },
+  { src: '/mobile/mbname.png', delay: 2, isStatic: false, zIndex: 16 },
+  { src: '/mobile/7.png', delay: 1.6, isStatic: false, zIndex: 15 },
+  { src: '/mobile/mb5-6.png', delay: 1.8, isStatic: false, zIndex: 14 },
+  { src: '/mobile/mb3-4.png', delay: 1.9, isStatic: false, zIndex: 13 },
+  { src: '/mobile/mb1-2.png', delay: 2.1, isStatic: false, zIndex: 12 },
+  { src: '/mobile/mbme.png', delay: 2.2, isStatic: false, zIndex: 11 },
+  { src: '/mobile/mobile bg.png', isStatic: true, zIndex: 0 },
 ];
 
 const desktopImages = [ 
@@ -234,7 +234,7 @@ useEffect(() => {
               ref={(el) => (mobileImagesRef.current[index] = el)}
               className="mobile-image hero-image-layer fixed inset-0 w-full h-full"
               style={{
-                zIndex: img.isStatic ? 0 : index + 10,
+                zIndex: img.zIndex,
                 animation: img.isStatic ? 'none' : `slideUp 1s ease-out ${img.delay}s forwards`,
                 transform: img.isStatic ? 'translateY(0)' : 'translateY(100vh)',
               }}
