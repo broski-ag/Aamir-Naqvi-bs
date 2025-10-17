@@ -234,16 +234,22 @@ export function VideoThumbnail({
         </div>
       )}
 
+      {/* Loading overlay with black background */}
+      {isLoading && (
+        <div className="absolute inset-0 bg-black flex items-center justify-center z-20">
+          <div className="text-white text-center">
+            <div className="w-12 h-12 border-3 border-white/30 border-t-white rounded-full animate-spin mx-auto mb-3" />
+            <p className="text-sm font-bosenAlt">LOADING</p>
+          </div>
+        </div>
+      )}
+
       {/* Play/Pause button overlay */}
-      <div className={`absolute inset-0 flex items-center justify-center z-10 ${
-        isLoading ? 'bg-black/20' : ''
-      }`}>
+      <div className={`absolute inset-0 flex items-center justify-center z-10`}>
         <div className={`bg-white/40 rounded-full flex items-center justify-center backdrop-blur-sm transition-all duration-300 ${playButtonSize} ${
-          isLoading ? 'animate-pulse' : (isMobile() ? '' : 'group-hover:bg-white/30')
-        } ${isPlaying && !isLoading ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}>
-          {isLoading ? (
-            <div className="w-6 h-6 border-2 border-white/40 border-t-white rounded-full animate-spin" />
-          ) : isPlaying ? (
+          isMobile() ? '' : 'group-hover:bg-white/30'
+        } ${(isPlaying && !isLoading) || isLoading ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}>
+          {isPlaying ? (
             <Pause className={`text-white ${
               aspectRatio === 'vertical' 
                 ? (isFullscreen ? 'w-8 h-8' : 'w-5 h-5')
