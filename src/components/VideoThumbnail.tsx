@@ -78,6 +78,7 @@ export function VideoThumbnail({
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [thumbnailLoaded, setThumbnailLoaded] = useState(false);
+  const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
 
   const aspectClasses = aspectRatio === "vertical" ? "aspect-[9/16]" : "aspect-video";
 
@@ -170,12 +171,12 @@ export function VideoThumbnail({
       } ${className}`}
       onClick={handleClick}
     >
-      {thumbnailPath && isInView && (
+      {thumbnailPath && isInView && !hasStartedPlaying && (
         <ThumbnailImage
           src={thumbnailPath}
           alt={`${title} thumbnail`}
           isFullscreen={isFullscreen}
-          isPlaying={isPlaying}
+          isPlaying={false}
           onLoad={() => setThumbnailLoaded(true)}
           onError={() => {
             console.warn(`Thumbnail not found: ${thumbnailPath}`);
@@ -186,12 +187,12 @@ export function VideoThumbnail({
 
       {/* Video element */}
       {isInView && (
-        <video 
+        <video
           ref={videoRef}
           className={`absolute inset-0 w-full h-full ${
             isFullscreen ? 'object-contain' : 'object-cover'
           } transition-opacity duration-300 ${
-            isPlaying ? 'opacity-100' : 'opacity-0'
+            hasStartedPlaying ? 'opacity-100' : 'opacity-0'
           }`}
           loop={isShowreel}
           playsInline
@@ -203,6 +204,7 @@ export function VideoThumbnail({
           onPlay={() => {
             console.log('Video started playing');
             setIsPlaying(true);
+            setHasStartedPlaying(true);
             setIsLoading(false);
           }}
           onPause={() => setIsPlaying(false)}
