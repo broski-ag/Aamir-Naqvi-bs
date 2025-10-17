@@ -433,10 +433,10 @@ useEffect(() => {
             <div className="flex flex-col items-center gap-2">
               <Mail className="text-[#181f22] w-8 h-8" />
               <a
-                href="https://mail.google.com/mail/?view=cm&to=broskiagency@gmail.com" target="_blank"
+                href="https://mail.google.com/mail/?view=cm&to=Aamirnaqvi03@gmail.com" target="_blank"
                 className="text-[#181f22] font-bosenAlt text-xl md:text-xl lg:text-2xl tracking-wide hover:text-blue-500 transition-colors duration-200"
               >
-                BROSKIAGENCY@GMAIL.COM
+                AAMIRNAQVI03@GMAIL.COM
               </a>
               <p className="text-[#181f22] text-xl md:text-1xl lg:text-2xl ibm-font mb-0 text-center">
   Let's create something that actually works.
