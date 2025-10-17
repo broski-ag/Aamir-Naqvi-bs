@@ -36,7 +36,7 @@ const mobileImages = [
   { src: '/mobile/mb3-4.png', delay: 1.9, isStatic: false },
   { src: '/mobile/mb1-2.png', delay: 2.1, isStatic: false },
   { src: '/mobile/mbme.png', delay: 2.2, isStatic: false},
-  { src: '/mobile/mobile bg.png',  isStatic: false },
+  { src: '/mobile/mobile bg.png', },
 ];
 
 const desktopImages = [ 
@@ -202,7 +202,7 @@ useEffect(() => {
 
 <div
   ref={fixedBackgroundRef}
-  className="fixed inset-0 bg-center bg-no-repeat z-[-1] 
+  className="fixed inset-0 bg-center bg-no-repeat z-[0] 
              bg-cover 
              sm:bg-cover 
              max-sm:bg-cover max-sm:bg-center"
